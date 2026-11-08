@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#061430">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Vanly Owner">
+<title>Owner App | Vanly Moving Co. (Demo)</title>
+<link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+<link rel="apple-touch-icon" href="/assets/ikona-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="/assets/style.css?v=73fd5e9d">
+<style>
+html, body { overflow-x: hidden; overflow-x: clip; }
+.tab-btn.active { background: rgba(76,195,245,.14); color: #fff; box-shadow: inset 0 0 0 1px rgba(76,195,245,.5); }
+.st-New { background: rgba(76,195,245,.12); color: #7dd3fc; border-color: rgba(76,195,245,.4); }
+.st-Booked { background: rgba(251,191,36,.12); color: #fcd34d; border-color: rgba(251,191,36,.4); }
+.st-Completed { background: rgba(52,211,153,.12); color: #6ee7b7; border-color: rgba(52,211,153,.4); }
+.lead-row.unread { border-color: rgba(76,195,245,.55); }
+.lead-row.flash { animation: leadFlash 1.6s ease-out 2; }
+@keyframes leadFlash { 0% { box-shadow: 0 0 0 0 rgba(76,195,245,.8); } 100% { box-shadow: 0 0 0 14px rgba(76,195,245,0); } }
+.num { width: 100%; background: rgba(4,13,31,.65); border: 1px solid rgba(255,255,255,.1); border-radius: .7rem; color: #e2e8f0; padding: .55rem .7rem; font-variant-numeric: tabular-nums; }
+.num:focus { outline: none; border-color: #4cc3f5; }
+.num.changed { border-color: #fbbf24; }
+.stage { min-height: 100vh; }
+.phone { position: relative; min-height: 100vh; background: #061430; }
+@media (min-width: 900px) {
+  .stage { display: flex; align-items: center; justify-content: center; gap: 4rem; padding: 2rem; }
+  .phone { width: 400px; height: min(840px, calc(100vh - 4rem)); min-height: 0; border-radius: 52px; border: 12px solid #0b1220; box-shadow: 0 0 0 2px #1e293b, 0 40px 120px -30px rgba(76,195,245,.45); overflow-y: auto; overflow-x: hidden; }
+  .phone::-webkit-scrollbar { width: 0; }
+  .notch { position: sticky; top: 0; z-index: 50; height: 0; }
+  .notch::before { content: ''; position: absolute; left: 50%; top: 8px; transform: translateX(-50%); width: 110px; height: 26px; border-radius: 20px; background: #0b1220; }
+  .side { display: block !important; }
+}
+</style>
+</head>
+<body class="font-sans bg-brand-950 text-slate-200 antialiased">
+<div class="stage">
+    <aside class="side hidden max-w-sm">
+    <a href="/" class="inline-flex items-center gap-2 text-sm font-bold text-acc hover:underline">← Back to the website</a>
+    <div class="mt-6 text-xs font-extrabold tracking-[.25em] uppercase text-acc">Owner App · Live demo</div>
+    <h1 class="mt-2 font-display text-4xl font-bold text-white leading-tight">Every quote request lands right here.</h1>
+    <p class="mt-4 text-slate-400 leading-relaxed">This is the app the moving company owner keeps on their phone. When a customer sends a request on the website, it pops up here instantly – with the full inventory, floors, distance and the price they saw.</p>
+    <ul class="mt-5 space-y-2.5 text-sm text-slate-300">
+      <li class="flex gap-2"><span class="text-price">✓</span>Tap to call or text the customer</li>
+      <li class="flex gap-2"><span class="text-price">✓</span>Mark requests as Booked or Completed</li>
+      <li class="flex gap-2"><span class="text-price">✓</span>Change your prices – the website updates instantly</li>
+      <li class="flex gap-2"><span class="text-price">✓</span>Installs on the home screen like a regular app</li>
+    </ul>
+    <p class="mt-6 text-xs text-slate-500">Tip: keep this tab open, send a request from the website in another tab, and watch it arrive with a sound.</p>
+  </aside>
+  <div class="phone" id="phone">
+    <div class="notch"></div>
+    <header class="sticky top-0 z-30 border-b border-white/[0.06] bg-brand-900/90 backdrop-blur-xl pt-2">
+      <div class="px-4 pt-3 pb-3">
+        <div class="flex items-center gap-2">
+          <svg viewBox="0 0 64 52" class="w-9 h-7 text-white shrink-0" aria-hidden="true"><path d="M4 14h30a4 4 0 0 1 4 4v24H4z" fill="currentColor"/><path d="M38 22h11c2.2 0 4 1.1 5.1 3l5.4 9.4c.3.6.5 1.3.5 2V42H38z" fill="currentColor" opacity=".78"/><circle cx="15" cy="44" r="6.5" fill="currentColor"/><circle cx="15" cy="44" r="2.6" fill="#061430"/><circle cx="48" cy="44" r="6.5" fill="currentColor"/><circle cx="48" cy="44" r="2.6" fill="#061430"/></svg>
+          <div class="mr-auto leading-none"><div class="font-display font-semibold tracking-[.16em] text-white">VANLY</div><div class="text-[10px] font-bold tracking-[.2em] text-slate-500 mt-0.5">OWNER APP</div></div>
+          <span class="text-[10px] font-extrabold px-2 py-1 rounded-md bg-amber-400/15 text-amber-300 border border-amber-400/30">DEMO</span>
+          <button id="notifyBtn" class="btn-ghost w-9 h-9 rounded-lg text-sm" title="Sound & notifications" aria-label="Sound and notifications">🔔</button>
+        </div>
+        <nav class="mt-3 flex gap-1 p-1 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+          <button class="tab-btn active flex-1 px-3 py-2 rounded-lg text-sm font-bold text-slate-400" data-tab="leads">Requests <span id="newBadge" class="ml-1 px-1.5 rounded-md bg-acc text-brand-900 text-[11px]" hidden>0</span></button>
+          <button class="tab-btn flex-1 px-3 py-2 rounded-lg text-sm font-bold text-slate-400" data-tab="prices">Prices</button>
+        </nav>
+      </div>
+    </header>
+        <main id="tab-leads" class="px-4 py-5">
+      <div id="listView">
+        <div class="grid grid-cols-3 gap-2" id="stats"></div>
+        <div id="filters" class="mt-4 flex flex-wrap gap-1.5"></div>
+        <input id="search" type="search" class="field !py-2 !text-sm w-full mt-3" placeholder="Search name, phone or address">
+        <div id="leadList" class="mt-4 space-y-2"></div>
+        <div class="mt-6 flex items-center justify-between gap-2">
+          <a href="/" class="text-xs font-bold text-acc hover:underline md:hidden">← Website</a>
+          <button id="resetDemo" class="ml-auto text-xs font-bold text-slate-500 hover:text-slate-300 underline">Reset demo</button>
+        </div>
+      </div>
+      <div id="detailView" hidden></div>
+    </main>
+        <main id="tab-prices" class="px-4 py-5" hidden>
+      <h2 class="font-display text-2xl font-bold text-white">Your prices</h2>
+      <p class="text-sm text-slate-400 mt-1">In US dollars. Changes go live on the website the moment you save.</p>
+      <div id="priceForm" class="mt-5 space-y-4"></div>
+      <div class="sticky bottom-0 -mx-4 mt-5 px-4 py-3 bg-brand-900/95 backdrop-blur border-t border-white/[0.06] flex gap-2">
+        <button id="resetPrices" class="btn-ghost flex-1 py-3 rounded-xl text-sm font-bold">Defaults</button>
+        <button id="savePrices" class="btn-primary flex-[2] py-3 rounded-xl text-sm">Save prices</button>
+      </div>
+    </main>
+    <div id="toast" class="sticky bottom-4 z-[80] mx-4 opacity-0 pointer-events-none transition">
+      <div class="px-4 py-3 rounded-xl bg-brand-800/95 border border-acc/40 text-sm text-slate-100 shadow-xl"><span id="toastText"></span></div>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+'use strict';
+const KEYS = { leads: 'nl.demo.leads', rules: 'nl.demo.rules', seeded: 'nl.demo.seeded', seen: 'nl.demo.seen' };
+const STATUSES = ['New', 'Booked', 'Completed'];
+const DEFAULT_RULES = {
+  kombi_start: 149, kamion_start: 299,
+  kombi_km: 1.5, kamion_km: 2.75,
+  kombi_m3: 400, kamion_m3: 1700,
+  cena_m3: 1.1,
+  min_selidba: 399, min_kombi: 149,
+  sprat_bez_lifta: [0, 8, 15, 22, 30, 38, 45],
+  sprat_sa_liftom: [0, 0, 4, 6, 8, 10, 12],
+  kutija_rad: 6, kutija_troslojna: 3, kutija_petoslojna: 5, kutija_garderober: 18,
+  zastita: 35,
+  teski: { pianino: [295, 75], tapec: [350, 60], sef: [275, 75] },
+  montaza: {
+    orman1: [45, 30], orman2: [65, 45], orman3: [85, 60],
+    klizni: [120, 85], stakleni: [150, 110],
+    sto: [55, 35], krevet: [60, 40], ugaona: [70, 45],
+    luster: [75, 50], krevetac: [45, 30]
+  },
+  zaokruzi: 5
+};
+const GROUPS = [
+  { t: 'Trucks', f: [
+    ['kombi_start', 'Cargo van – dispatch fee', '$'], ['kamion_start', '26 ft truck – dispatch fee', '$'],
+    ['kombi_km', 'Cargo van – per mile', '$/mi'], ['kamion_km', '26 ft truck – per mile', '$/mi'],
+    ['kombi_m3', 'Cargo van capacity', 'cu ft'], ['kamion_m3', 'Truck capacity (one trip)', 'cu ft']] },
+  { t: 'Basics', f: [
+    ['cena_m3', 'Price per cubic foot', '$/cu ft'], ['min_selidba', 'Minimum – full-service move', '$'],
+    ['min_kombi', 'Minimum – truck & driver only', '$'], ['zaokruzi', 'Round totals to', '$'],
+    ['zastita', 'Extra protection per item (TV, mirror…)', '$']] },
+  { t: 'Packing (we pack)', f: [
+    ['kutija_rad', 'Packing labor per box', '$'], ['kutija_troslojna', 'Standard box', '$'],
+    ['kutija_petoslojna', 'Heavy-duty / large box', '$'], ['kutija_garderober', 'Wardrobe box', '$']] }
+];
+const FLOOR_NAMES = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th+'];
+const HEAVY_NAMES = { pianino: 'Piano', tapec: 'Pool table', sef: 'Gun safe / safe' };
+const MD_NAMES = {
+  orman1: 'Small armoire', orman2: 'Armoire', orman3: 'Large armoire', klizni: 'Sliding-door wardrobe',
+  stakleni: 'Glass-door wardrobe', sto: 'Desk', krevet: 'Queen / king bed', ugaona: 'Sectional sofa', luster: 'Light fixture', krevetac: 'Crib'
+};
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const money = n => n == null || n === '' ? '—' : new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
+const clone = o => JSON.parse(JSON.stringify(o));
+const fmtDate = s => s ? new Date(s).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+const read = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } };
+const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } };
+let leads = [], filter = 'all', selected = null, rules = clone(DEFAULT_RULES);
+const seen = new Set(read(KEYS.seen, []));
+let toastT;
+function toast(msg) {
+  $('#toastText').textContent = msg;
+  $('#toast').style.opacity = 1;
+  clearTimeout(toastT); toastT = setTimeout(() => { $('#toast').style.opacity = 0; }, 3000);
+}
+function seed() {
+  if (read(KEYS.seeded, false)) return;
+  const ago = h => new Date(Date.now() - h * 3600e3).toISOString();
+  const sample = [
+    { id: 'S1', name: 'Emily Carter (sample)', phone: '(312) 555-0187', from: '2400 N Clark St, Chicago, IL', to: '515 Davis St, Evanston, IL', sqft: 1000, miles: 12, cuft: 520, total: 1245, status: 'New', created_at: ago(2),
+      details: { service: 'Full-service move', home: 'Apartment · 2 bedrooms', truck: '26 ft truck', trips: 1, packing: 'Customer packs',
+        pickup: { floor: '3rd floor, stairs' }, dropoff: { floor: '2nd floor, elevator' },
+        inventory: [{ name: 'Sofa', qty: 1, cuft: 53 }, { name: 'Queen / king bed', qty: 1, cuft: 78, disassembly: true, assembly: true }, { name: 'Dresser', qty: 2, cuft: 64 }, { name: 'Flat-screen TV', qty: 1, cuft: 11 }, { name: 'Medium box', qty: 30, cuft: 120 }],
+        breakdown: [{ item: 'Truck – 26 ft truck', info: 'truck and crew dispatch', amount: 299 }, { item: 'Mileage', info: '12 mi × $2.75', amount: 33 }, { item: 'Volume of items', info: '520 cu ft × $1.10', amount: 572 }, { item: 'Queen / king bed – disassembly & assembly', info: '1 × $100', amount: 100 }, { item: 'Stairs & floors (+15%)', info: 'pickup: 3rd floor, stairs · drop-off: 2nd floor, elevator', amount: 242 }] } },
+    { id: 'S2', name: 'Marcus Lee (sample)', phone: '(312) 555-0163', from: '1550 S Michigan Ave, Chicago, IL', to: '725 Ogden Ave, Naperville, IL', sqft: 1400, miles: 31, cuft: 890, total: 1720, status: 'Booked', created_at: ago(26),
+      details: { service: 'Full-service move', home: 'House · 3 bedrooms', truck: '26 ft truck', trips: 1, packing: 'We pack (standard boxes)',
+        pickup: { floor: 'ground floor' }, dropoff: { floor: 'ground floor' },
+        inventory: [{ name: 'Sectional sofa', qty: 1, cuft: 88 }, { name: 'Refrigerator', qty: 1, cuft: 53 }, { name: 'Washer / dishwasher', qty: 1, cuft: 21 }, { name: 'Medium box', qty: 45, cuft: 180 }],
+        breakdown: [{ item: 'Truck – 26 ft truck', info: 'truck and crew dispatch', amount: 299 }, { item: 'Mileage', info: '31 mi × $2.75', amount: 85 }, { item: 'Volume of items', info: '890 cu ft × $1.10', amount: 979 }, { item: 'Packing – 45 × medium boxes', info: 'labor $6 + materials $3 per box', amount: 405 }] } },
+    { id: 'S3', name: 'Sofia Ramirez (sample)', phone: '(773) 555-0124', from: '3100 N Sheffield Ave, Chicago, IL', to: '1800 W Division St, Chicago, IL', sqft: 500, miles: 5, cuft: 210, total: 399, status: 'Completed', created_at: ago(74),
+      details: { service: 'Full-service move', home: 'Apartment · Studio', truck: 'Cargo van', trips: 1, packing: 'Customer packs', pickup: { floor: '2nd floor, stairs' }, dropoff: { floor: '4th floor, elevator' },
+        inventory: [{ name: 'Twin / full bed', qty: 1, cuft: 42 }, { name: 'Desk', qty: 1, cuft: 35 }, { name: 'Medium box', qty: 20, cuft: 80 }],
+        breakdown: [{ item: 'Truck – Cargo van', info: 'truck and crew dispatch', amount: 149 }, { item: 'Mileage', info: '5 mi × $1.50', amount: 8 }, { item: 'Volume of items', info: '210 cu ft × $1.10', amount: 231 }] } }
+  ];
+  write(KEYS.leads, sample.concat(read(KEYS.leads, [])));
+  write(KEYS.seeded, true);
+  sample.forEach(l => seen.add(l.id));
+  write(KEYS.seen, [...seen]);
+}
+function load() { leads = read(KEYS.leads, []); }
+function persist() { write(KEYS.leads, leads); }
+const isNew = l => l.status === 'New' && !seen.has(l.id);
+function renderStats() {
+  const c = s => leads.filter(l => l.status === s).length;
+  const booked = leads.filter(l => l.status !== 'New').reduce((a, l) => a + (Number(l.total) || 0), 0);
+  $('#stats').innerHTML = [
+    ['New', c('New'), 'text-acc'], ['Booked', c('Booked'), 'text-amber-300'], ['Booked $', money(booked), 'text-price']
+  ].map(([t, v, cls]) => `<div class="glass !rounded-2xl p-3"><div class="text-[10px] uppercase tracking-widest text-slate-500">${t}</div><div class="font-display text-xl font-bold ${cls} tabular mt-0.5 truncate">${v}</div></div>`).join('');
+  const n = leads.filter(isNew).length;
+  $('#newBadge').hidden = !n; $('#newBadge').textContent = n;
+  document.title = (n ? `(${n}) ` : '') + 'Owner App | Vanly Moving Co. (Demo)';
+}
+function renderFilters() {
+  const opts = [['all', 'All'], ['New', 'New'], ['Booked', 'Booked'], ['Completed', 'Done']];
+  $('#filters').innerHTML = opts.map(([v, t]) => `<button class="tab-btn ${filter === v ? 'active' : ''} px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 border border-white/[0.06]" data-f="${v}">${t} <span class="opacity-70">${v === 'all' ? leads.length : leads.filter(l => l.status === v).length}</span></button>`).join('');
+}
+function renderList(flashId) {
+  const q = $('#search').value.trim().toLowerCase();
+  const rows = leads.filter(l => (filter === 'all' || l.status === filter) && (!q || [l.name, l.phone, l.from, l.to].join(' ').toLowerCase().includes(q)));
+  $('#leadList').innerHTML = rows.length ? rows.map(l => `
+    <button class="lead-row glass !rounded-2xl w-full min-w-0 overflow-hidden text-left p-4 ${isNew(l) ? 'unread' : ''} ${flashId === l.id ? 'flash' : ''}" data-id="${esc(l.id)}">
+      <div class="flex items-center gap-2">
+        ${isNew(l) ? '<span class="w-2 h-2 rounded-full bg-acc shrink-0"></span>' : ''}
+        <span class="font-bold text-white truncate min-w-0">${esc(l.name || 'No name')}</span>
+        <span class="ml-auto shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-md border st-${esc(l.status)}">${esc(l.status)}</span>
+      </div>
+      <div class="mt-1.5 text-xs text-slate-400 truncate">${esc(l.from || '—')} → ${esc(l.to || '—')}</div>
+      <div class="mt-1.5 flex justify-between gap-2 text-xs"><span class="text-slate-500">${fmtDate(l.created_at)} · ${esc(l.miles)} mi · ${esc(l.cuft)} cu ft</span><span class="font-bold text-price tabular shrink-0">${money(l.total)}</span></div>
+    </button>`).join('') : '<div class="text-sm text-slate-500 p-4 text-center">No requests yet. Send one from the website!</div>';
+}
+function refresh(flashId) { renderStats(); renderFilters(); renderList(flashId); }
+function openDetail(id) {
+  const l = leads.find(x => x.id === id); if (!l) return;
+  selected = id; seen.add(id); write(KEYS.seen, [...seen]);
+  const d = l.details || {};
+  const tel = String(l.phone || '').replace(/[^\d+]/g, '');
+  const maps = 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(l.from || '') + '&destination=' + encodeURIComponent(l.to || '');
+  const inv = (d.inventory || []).map(i => `<tr class="border-t border-white/[0.05]"><td class="py-1.5 pr-2">${esc(i.name)}${i.disassembly ? ' <span class="text-acc text-[10px] font-bold">DIS</span>' : ''}${i.assembly ? ' <span class="text-acc text-[10px] font-bold">ASM</span>' : ''}</td><td class="py-1.5 text-right tabular">×${esc(i.qty)}</td><td class="py-1.5 text-right tabular text-slate-500 pl-2">${esc(i.cuft)} ft³</td></tr>`).join('');
+  const calc = (d.breakdown || []).map(o => `<div class="flex justify-between gap-3 py-1.5"><div class="min-w-0"><div class="text-slate-200">${esc(o.item)}</div>${o.info ? `<div class="text-[11px] text-slate-500">${esc(o.info)}</div>` : ''}</div><div class="font-bold text-price tabular shrink-0">${money(o.amount)}</div></div>`).join('');
+  $('#listView').hidden = true;
+  const v = $('#detailView'); v.hidden = false;
+  v.innerHTML = `
+    <button type="button" id="backBtn" class="btn-ghost px-4 py-2 rounded-xl text-sm font-bold">← Requests</button>
+    <div class="mt-4 flex items-start gap-3">
+      <div class="min-w-0 mr-auto"><div class="text-2xl font-display font-bold text-white break-words">${esc(l.name || 'No name')}</div><div class="text-xs text-slate-500 mt-1">${fmtDate(l.created_at)}</div></div>
+      <select id="stSel" class="field !w-auto !py-2 !text-sm">${STATUSES.map(s => `<option ${l.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select>
+    </div>
+    <div class="mt-4 grid grid-cols-3 gap-2">
+      <a href="tel:${esc(tel)}" class="btn-primary py-3 rounded-xl text-sm text-center">📞 Call</a>
+      <a href="sms:${esc(tel)}" class="btn-ghost py-3 rounded-xl text-sm font-bold text-center">💬 Text</a>
+      <a href="${maps}" target="_blank" rel="noopener" class="btn-ghost py-3 rounded-xl text-sm font-bold text-center">🗺️ Route</a>
+    </div>
+    <div class="mt-4 rounded-2xl border border-price/25 bg-price/[0.05] p-4 flex items-center justify-between gap-3">
+      <span class="text-[11px] uppercase tracking-widest text-slate-400">Quoted online</span><span class="font-display text-3xl font-bold text-price tabular">${money(l.total)}</span>
+    </div>
+    ${d.note ? `<div class="mt-3 rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-2.5 text-sm text-amber-200">${esc(d.note)}</div>` : ''}
+    <dl class="mt-5 space-y-3 text-sm break-words">
+      <div><dt class="text-[11px] uppercase tracking-widest text-slate-500">From</dt><dd class="text-white">${esc(l.from || '—')}</dd><dd class="text-xs text-slate-400">${esc((d.pickup || {}).floor || '')}</dd></div>
+      <div><dt class="text-[11px] uppercase tracking-widest text-slate-500">To</dt><dd class="text-white">${esc(l.to || '—')}</dd><dd class="text-xs text-slate-400">${esc((d.dropoff || {}).floor || '')}</dd></div>
+      <div class="grid grid-cols-2 gap-3">
+        <div><dt class="text-[11px] uppercase tracking-widest text-slate-500">Move</dt><dd>${esc(d.service || '—')}</dd></div>
+        <div><dt class="text-[11px] uppercase tracking-widest text-slate-500">Home</dt><dd>${esc([d.home, l.sqft ? Number(l.sqft).toLocaleString('en-US') + ' sq ft' : ''].filter(Boolean).join(' · ') || '—')}</dd></div>
+        <div><dt class="text-[11px] uppercase tracking-widest text-slate-500">Load</dt><dd>${esc(l.cuft)} cu ft · ${esc(d.truck || '')}${d.trips > 1 ? ' · ' + esc(d.trips) + ' trips' : ''}</dd></div>
+        <div><dt class="text-[11px] uppercase tracking-widest text-slate-500">Distance</dt><dd>${esc(l.miles)} mi</dd></div>
+        <div class="col-span-2"><dt class="text-[11px] uppercase tracking-widest text-slate-500">Packing</dt><dd>${esc(d.packing || '—')}</dd></div>
+      </div>
+    </dl>
+    ${inv ? `<h3 class="mt-6 text-xs font-extrabold tracking-[.2em] uppercase text-slate-500">Inventory</h3><table class="mt-2 w-full text-sm"><tbody>${inv}</tbody></table>` : ''}
+    ${calc ? `<h3 class="mt-6 text-xs font-extrabold tracking-[.2em] uppercase text-slate-500">Price breakdown</h3><div class="mt-2 text-sm">${calc}</div>` : ''}
+    <div class="mt-8 pt-5 border-t border-white/[0.06] flex justify-end"><button id="delBtn" class="px-4 py-2.5 rounded-xl text-sm font-bold text-rose-300 border border-rose-400/30 hover:bg-rose-500/10">Delete request</button></div>`;
+  $('#backBtn').addEventListener('click', closeDetail);
+  $('#stSel').addEventListener('change', e => { l.status = e.target.value; persist(); refresh(); toast('Status: ' + l.status); });
+  $('#delBtn').addEventListener('click', () => {
+    if (!confirm('Delete this request?')) return;
+    leads = leads.filter(x => x.id !== l.id); persist(); closeDetail(); toast('Request deleted');
+  });
+  scrollTopApp();
+  refresh();
+}
+function closeDetail() { selected = null; $('#detailView').hidden = true; $('#listView').hidden = false; refresh(); scrollTopApp(); }
+function scrollTopApp() { const p = $('#phone'); if (p.scrollHeight > p.clientHeight) p.scrollTop = 0; else window.scrollTo(0, 0); }
+$('#filters').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; filter = b.dataset.f; renderFilters(); renderList(); });
+$('#search').addEventListener('input', () => renderList());
+$('#leadList').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) openDetail(b.dataset.id); });
+$('#resetDemo').addEventListener('click', () => {
+  if (!confirm('Reset the demo? This removes your test requests and restores the default prices.')) return;
+  [KEYS.leads, KEYS.rules, KEYS.seeded, KEYS.seen].forEach(k => localStorage.removeItem(k));
+  seen.clear(); seed(); load(); rules = clone(DEFAULT_RULES); renderPrices(); closeDetail(); toast('Demo reset');
+});
+let audio = null;
+function beep() {
+  try {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    [0, .18].forEach((t, i) => {
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.frequency.value = i ? 1046 : 784; o.connect(g); g.connect(audio.destination);
+      g.gain.setValueAtTime(.0001, audio.currentTime + t); g.gain.exponentialRampToValueAtTime(.25, audio.currentTime + t + .02); g.gain.exponentialRampToValueAtTime(.0001, audio.currentTime + t + .25);
+      o.start(audio.currentTime + t); o.stop(audio.currentTime + t + .3);
+    });
+  } catch (e) { }
+}
+function onNewLead() {
+  const before = new Set(leads.map(l => l.id));
+  load();
+  const fresh = leads.find(l => !before.has(l.id));
+  if (!fresh) { refresh(); return; }
+  beep();
+  toast('New request: ' + (fresh.name || '') + ' · ' + money(fresh.total));
+  if ('Notification' in window && Notification.permission === 'granted') {
+    try { new Notification('New moving request', { body: `${fresh.name || ''} · ${money(fresh.total)}`, icon: '/assets/ikona-192.png' }); } catch (e) { }
+  }
+  if (!selected) { filter = 'all'; refresh(fresh.id); } else refresh();
+}
+try { const bc = new BroadcastChannel('nl-demo'); bc.onmessage = ev => { if (ev.data && ev.data.type === 'lead') onNewLead(); }; } catch (e) { }
+window.addEventListener('storage', ev => { if (ev.key === KEYS.leads) onNewLead(); });
+$('#notifyBtn').addEventListener('click', async () => {
+  beep();
+  if ('Notification' in window) { const p = await Notification.requestPermission(); toast(p === 'granted' ? 'Sound and notifications are on' : 'Sound is on'); }
+  else toast('Sound is on');
+});
+function mergeRules(src) {
+  const r = clone(DEFAULT_RULES);
+  if (!src || typeof src !== 'object') return r;
+  Object.keys(r).forEach(k => {
+    const v = src[k]; if (v == null) return;
+    if (Array.isArray(r[k])) { if (Array.isArray(v) && v.length === r[k].length) r[k] = v.map(Number); }
+    else if (typeof r[k] === 'object') Object.keys(r[k]).forEach(s => { if (Array.isArray(v[s]) && v[s].length === 2) r[k][s] = v[s].map(Number); });
+    else if (Number.isFinite(Number(v))) r[k] = Number(v);
+  });
+  return r;
+}
+const inp = (path, val) => `<input class="num" type="number" min="0" step="any" inputmode="decimal" data-path="${path}" value="${val}">`;
+const card = (title, inner, note) => `<section class="glass !rounded-2xl p-4"><h3 class="font-display text-lg font-bold text-white">${title}</h3>${note ? `<p class="text-xs text-slate-500 mt-1">${note}</p>` : ''}<div class="mt-3">${inner}</div></section>`;
+function renderPrices() {
+  let html = GROUPS.map(g => card(g.t, `<div class="space-y-3">${g.f.map(([k, l, u]) => `<label class="flex items-center gap-3"><span class="flex-1 text-sm text-slate-300">${l} <span class="text-slate-600 text-xs">(${u})</span></span><span class="w-24 shrink-0">${inp(k, rules[k])}</span></label>`).join('')}</div>`)).join('');
+  const floorRow = (k, t) => `<div class="text-xs text-slate-400 mt-2 mb-1">${t}</div><div class="grid grid-cols-7 gap-1">${rules[k].map((v, i) => `<label class="text-center"><span class="block text-[10px] text-slate-500 mb-0.5">${FLOOR_NAMES[i]}</span>${inp(k + '.' + i, v)}</label>`).join('')}</div>`;
+  html += card('Stairs & floors (%)', floorRow('sprat_bez_lifta', 'Walk-up (no elevator)') + floorRow('sprat_sa_liftom', 'With elevator'), 'Percentage added to the whole move, for pickup and drop-off separately.');
+  html += card('Specialty items', `<div class="grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 items-center"><span></span><span class="text-[10px] text-slate-500 font-bold">Base $</span><span class="text-[10px] text-slate-500 font-bold">Per flight $</span>${Object.keys(rules.teski).map(k => `<span class="text-sm text-slate-300">${HEAVY_NAMES[k] || k}</span>${inp('teski.' + k + '.0', rules.teski[k][0])}${inp('teski.' + k + '.1', rules.teski[k][1])}`).join('')}</div>`);
+  html += card('Assembly & disassembly (per piece)', `<div class="grid grid-cols-[minmax(0,1fr)_4.5rem_4.5rem] gap-2 items-center"><span></span><span class="text-[10px] text-slate-500 font-bold">Assembly</span><span class="text-[10px] text-slate-500 font-bold">Disassembly</span>${Object.keys(rules.montaza).map(k => `<span class="text-sm text-slate-300">${MD_NAMES[k] || k}</span>${inp('montaza.' + k + '.0', rules.montaza[k][0])}${inp('montaza.' + k + '.1', rules.montaza[k][1])}`).join('')}</div>`);
+  $('#priceForm').innerHTML = html;
+}
+function readForm() {
+  const r = clone(rules);
+  for (const el of $$('#priceForm [data-path]')) {
+    const v = Number(el.value);
+    if (el.value === '' || !Number.isFinite(v) || v < 0) { el.focus(); throw new Error('Please enter a valid number.'); }
+    const p = el.dataset.path.split('.'); let o = r;
+    for (let i = 0; i < p.length - 1; i++) o = o[p[i]];
+    o[p[p.length - 1]] = v;
+  }
+  if (r.zaokruzi < 1) r.zaokruzi = 1;
+  return r;
+}
+$('#priceForm').addEventListener('input', e => { if (e.target.dataset.path) e.target.classList.add('changed'); });
+$('#savePrices').addEventListener('click', () => {
+  let r; try { r = readForm(); } catch (e) { toast(e.message); return; }
+  write(KEYS.rules, r); rules = r; renderPrices();
+  toast('Saved – the website now uses these prices');
+});
+$('#resetPrices').addEventListener('click', () => { rules = clone(DEFAULT_RULES); renderPrices(); $$('#priceForm .num').forEach(x => x.classList.add('changed')); toast('Defaults loaded – tap Save to apply'); });
+$$('.tab-btn[data-tab]').forEach(b => b.addEventListener('click', () => {
+  $$('.tab-btn[data-tab]').forEach(x => x.classList.toggle('active', x === b));
+  $('#tab-leads').hidden = b.dataset.tab !== 'leads';
+  $('#tab-prices').hidden = b.dataset.tab !== 'prices';
+  scrollTopApp();
+}));
+seed();
+load();
+rules = mergeRules(read(KEYS.rules, null));
+renderPrices();
+refresh();
+})();
+</script>
+</body>
+</html>
